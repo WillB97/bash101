@@ -13,7 +13,7 @@ for arg in $@; do
 	i=$((i+1))
 done
 
-docker build --force-rm -t $(cat tag) --build-arg chal_user=$(cat tag)  .
+docker build --force-rm -t $(cat tag) --build-arg chal_user=$(cat tag) $args .
 id -u $(cat tag)
 if [[ $? -ne 0 ]]; then
 	sudo adduser --gecos "" $(cat tag) && echo "$(cat tag):$chal_pass" | sudo chpasswd
