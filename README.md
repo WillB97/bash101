@@ -24,3 +24,15 @@ RUN echo "flag{$flag0}" > flag.txt
 CMD bash
 ```
 Flags and passwords are then set at build time.
+
+Build each challenge using:
+```bash
+cd bash0
+chal_make <challenge-password> <flag-value> [<flag-value> ..]
+```
+
+## Setup
+```bash
+./setup.sh
+./run.sh
+```
