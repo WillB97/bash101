@@ -17,3 +17,14 @@ EOF
 sudo cp docker_ssh /usr/bin/docker_ssh
 mkdir ~/bin
 cp chal_make ~/bin/chal_make
+
+cat << EOF |sudo tee -a /etc/docker/daemon.json > /dev/null
+{
+    "graph": "/mnt/ramdisk/docker-imgs"
+}
+EOF
+
+sudo mkdir /mnt/ramdisk
+cat << EOF |sudo tee -a /etc/fstab > /dev/null
+tmpfs   /mnt/ramdisk/         tmpfs   size=6G          0  0
+EOF
