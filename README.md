@@ -14,12 +14,14 @@ The dockerfile follows the form:
 FROM <base-image>
 ARG flag0=flag
 ARG chal_user=bash
-# place this flag where it is wanted
 RUN adduser --gecos "" --disabled-password $chal_user
 WORKDIR /home/$chal_user
+
+# place this flag where it is wanted
 RUN echo "flag{$flag0}" > flag.txt
 # insert an embedded flag
 # RUN sed -i flag.txt "s/flag{}/flag{$flag0}/"
+
 # set the command to run at container start (generally a shell)
 CMD bash
 ```
