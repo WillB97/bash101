@@ -5,7 +5,7 @@ pwd # flag in path
 ls # flag in file name
 ls -l # flag in owner (permissions)
 ls -a # flag in hidden file
-cat # regular file, file beginning with -, spaces, hidden
+cat # regular file, file beginning with -, spaces
 # talk about man (tldr)
 history # all the commands
 ```
