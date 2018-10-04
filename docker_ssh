@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ ! -z "$SSH_ORIGINAL_COMMAND" ]]; then
+	docker run --rm --hostname will --user $USER $USER $SSH_ORIGINAL_COMMAND
+else
+	docker run --rm --interactive --tty --hostname will --user $USER $USER
+fi

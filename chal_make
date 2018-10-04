@@ -1,0 +1,21 @@
+#!/bin/bash
+if [[ "$#" -le 1 ]]; then
+	echo "usage: $0 <challenge-password> <flag-value> [<flag-value> ..]"
+	exit 1
+fi
+
+chal_pass="$1"
+shift
+
+i=0
+for arg in $@; do
+	args="$args --build-arg flag$i=$arg"
+	i=$((i+1))
+done
+
+docker build --force-rm -t $(cat tag) --build-arg chal_user=$(cat tag)  .
+id -u $(cat tag)
+if [[ $? -ne 0 ]]; then
+	sudo adduser --gecos "" $(cat tag) && echo "$(cat tag):$chal_pass" | sudo chpasswd
+	sudo adduser $(cat tag) docker
+fi
