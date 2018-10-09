@@ -13,6 +13,7 @@ history # all the commands
 bash1
 ```bash
 file # find the text file in a directory of data files
+head # its a big file
 ```
 
 bash2
