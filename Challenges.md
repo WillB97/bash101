@@ -12,13 +12,13 @@ history # all the commands
 
 bash1
 ```bash
-file # find the text file in a directory of data files
-head # its a big file
+file inhere/* # find the text file in a directory of data files
+head inhere/inhere12 # its a big file
 ```
 
 bash2
 ```bash
-find -size 1033c # find file of known size in a directory tree
+find ~/ -size 1033c # find file of known size in a directory tree
 ```
 
 bash3

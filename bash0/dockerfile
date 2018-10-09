@@ -8,6 +8,7 @@ ARG flag5=flag
 ARG flag6=flag
 ARG flag7=flag
 ARG chal_user=bash
+RUN apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl
 
 RUN adduser --gecos "" --disabled-password --home "/home/flag{$flag0}/" $chal_user
 WORKDIR /home/flag\{$flag0\}/
