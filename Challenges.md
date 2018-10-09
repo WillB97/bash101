@@ -23,7 +23,7 @@ find ~/ -size 1033c # find file of known size in a directory tree
 
 bash3
 ```bash
-find / -group 'bandit6' -user 'bandit7' # find file owned by a specific group and execute it
+find ~/ -group 'bash1' -user 'bash0' # find file owned by a specific group and execute it
 ```
 
 bash4

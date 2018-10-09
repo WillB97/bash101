@@ -1,0 +1,15 @@
+FROM ubuntu
+ARG flag0=flag
+ARG chal_user=bash
+RUN adduser --gecos "" --disabled-password bash0
+RUN adduser --gecos "" --disabled-password bash1
+RUN adduser --gecos "" --disabled-password $chal_user
+WORKDIR /home/$chal_user
+
+RUN apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl
+COPY *.sh ./
+RUN ./chal_gen.sh "$flag0"
+RUN rm *.sh 
+
+# set the command to run at container start (generally a shell)
+CMD bash
