@@ -16,7 +16,7 @@ done
 docker build --force-rm -t $(cat tag) --build-arg chal_user=$(cat tag) $args .
 id -u $(cat tag)
 if [[ $? -ne 0 ]]; then
-	sudo adduser --gecos "" $(cat tag) && echo "$(cat tag):$chal_pass" | sudo chpasswd
+	sudo adduser --disabled-password --gecos "" $(cat tag) && echo "$(cat tag):$chal_pass" | sudo chpasswd
 	sudo adduser $(cat tag) docker
 else
 	echo "$(cat tag):$chal_pass" | sudo chpasswd

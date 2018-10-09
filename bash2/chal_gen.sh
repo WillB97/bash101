@@ -1,7 +1,6 @@
 #! /bin/bash
 ./dir_gen.sh
-shopt -s globstar # require bash4
-dirs=( $(pwd)/** )
+dirs=( $(find $(pwd) -type d 2>/dev/null) )
 for i in $(printf '%s\n' ${dirs[@]} | shuf ); do 
 	cat /dev/urandom | tr -d -c '[:alpha:]'|head -c $(./random.sh 500 2000) |fold -w10 > $i/inhere
 done
