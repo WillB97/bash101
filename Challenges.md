@@ -64,7 +64,7 @@ ssh -i bash200_rsa_key bash200@localhost # ssh keys
 
 bash11
 ```bash
-cat /etc/bandit_pass/bandit14 | nc localhost 30000 # netcat
+cat data.txt | nc localhost 30000 # netcat
 ```
 
 bash12
