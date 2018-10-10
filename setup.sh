@@ -1,9 +1,10 @@
 #! /bin/bash
-sudo apt update && sudo full-upgrade -y
+sudo apt update && sudo apt full-upgrade -y
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt-get update && sudo apt-get install docker-ce
+sudo apt-get update && sudo apt-get install docker-ce -y
+sudo usermod -aG docker $USER
 
 cat << EOF |sudo tee -a /etc/ssh/sshd_config > /dev/null
 

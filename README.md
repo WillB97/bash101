@@ -36,5 +36,6 @@ chal_make <challenge-password> <flag-value> [<flag-value> ..]
 ## Setup
 ```bash
 ./setup.sh
+# restart your session to apply groups
 ./run.sh
 ```
