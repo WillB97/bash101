@@ -69,7 +69,7 @@ cat data.txt | nc localhost 30000 # netcat
 
 bash12
 ```bash
-cat /etc/bandit_pass/bandit15 |openssl s_client -connect localhost:30001 -ign_eof # ssl netcat
+cat data.txt | openssl s_client -connect localhost:30001 -ign_eof # ssl netcat
 ```
 
 bash13
