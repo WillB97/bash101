@@ -1,0 +1,12 @@
+FROM ubuntu
+ARG flag0=flag
+ARG chal_user=bash
+RUN adduser --gecos "" --disabled-password $chal_user
+WORKDIR /home/$chal_user
+
+RUN  apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl
+RUN cat /dev/urandom | tr -d -c '[:alpha:]'|head -c 1M |fold -w40 > password.old
+RUN cat password.old | sed "300i flag{$flag0}" > password.new
+
+# set the command to run at container start (generally a shell)
+CMD bash
