@@ -59,7 +59,7 @@ diff password.old password.new  # diff files
 
 bash10
 ```bash
-ssh bandit14@localhost -p2220 -i sshkey.private # ssh keys
+ssh -i bash200_rsa_key bash200@localhost # ssh keys
 ```
 
 bash11
@@ -74,7 +74,7 @@ cat /etc/bandit_pass/bandit15 |openssl s_client -connect localhost:30001 -ign_eo
 
 bash13
 ```bash
-ssh bandit18@bandit.labs.overthewire.org -p2220 "cat readme" # ssh tty disabled
+ssh -i bash200_rsa_key bash200@localhost "cat flag.txt" # ssh tty disabled
 ```
 
 zip in jpeg
