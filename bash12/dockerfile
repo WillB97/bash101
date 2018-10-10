@@ -1,0 +1,17 @@
+FROM ubuntu
+ARG flag0=flag
+ARG chal_user=bash
+RUN adduser --gecos "" --disabled-password $chal_user
+WORKDIR /home/$chal_user
+
+RUN  apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl sudo
+RUN apt-get install -y socat
+COPY *.sh /usr/
+RUN openssl req -x509 -newkey rsa:2048 -keyout /usr/key.pem -out /usr/cert.pem -days 365 -nodes -subj "/C=UK/ST=Hampshire/L=Southampton/O=Southampton University/OU=SUCSS/CN=bash101.sucss.org"
+RUN chown $chal_user:$chal_user /usr/key.pem && chown $chal_user:$chal_user /usr/cert.pem
+RUN echo "more-securely-this-time" > data.txt
+RUN sed -i "s/flag{}/flag{$flag0}/" /usr/listen.sh
+
+
+# set the command to run at container start (generally a shell)
+CMD /usr/starter.sh && bash
