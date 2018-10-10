@@ -1,0 +1,19 @@
+FROM ubuntu
+ARG flag0=flag
+ARG chal_user=bash
+RUN adduser --gecos "" --disabled-password $chal_user
+WORKDIR /home/$chal_user
+
+RUN  apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl
+RUN apt-get install -y openssh-server
+RUN adduser --gecos "" --disabled-password bash200
+RUN ssh-keygen -N "" -f bash200_rsa_key && mkdir /home/bash200/.ssh && mv bash200_rsa_key.pub /home/bash200/.ssh/authorized_keys
+RUN chown bash200:bash200 /home/bash200/.ssh/authorized_keys && chmod 600 /home/bash200/.ssh/authorized_keys
+RUN chown $chal_user:$chal_user bash200_rsa_key
+COPY ssh_shell.sh /usr/bin/ssh_shell.sh
+RUN mkdir /run/sshd && chmod u+s /usr/sbin/sshd
+RUN echo "Match User *\n ForceCommand /usr/bin/ssh_shell.sh\n PermitTTY no\n PubkeyAuthentication yes\n AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
+RUN echo "flag{$flag0}" > /home/bash200/flag.txt
+
+# set the command to run at container start (generally a shell)
+CMD /usr/sbin/sshd && bash
