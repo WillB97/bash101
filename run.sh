@@ -8,6 +8,12 @@ while read line; do
 	chal_list=$(echo "$chal_list" | sed '1d') # strip first element from dir list
 	chal_make $last_pass $line
 	last_pass=${line##* } # last word of line
+	# runtime banner
+	if [[ -z info.txt ]]; then
+		cp info.txt /usr/share/docker_ssh/$(cat tag)
+	else
+		echo "You have connected, please wait for a prompt." > /usr/share/docker_ssh/$(cat tag)
+	fi
 	cd ..
 	if [[ -z "$chal_list" ]]; then
 		exit 0

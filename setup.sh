@@ -17,6 +17,8 @@ EOF
 
 sudo cp docker_ssh /usr/bin/docker_ssh
 mkdir ~/bin
+sudo mkdir -p /usr/share/docker_ssh
+sudo chmod 777 /usr/share/docker_ssh
 cp chal_make ~/bin/chal_make
 
 cat << EOF |sudo tee -a /etc/docker/daemon.json > /dev/null

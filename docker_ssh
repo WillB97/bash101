@@ -2,5 +2,6 @@
 if [[ ! -z "$SSH_ORIGINAL_COMMAND" ]]; then
 	docker run --rm --hostname $USER --user $USER --cpus=".5" $USER $SSH_ORIGINAL_COMMAND
 else
+	cat "/usr/share/docker_ssh/$USER"
 	docker run --rm --interactive --tty --hostname $USER --user $USER --cpus=".5" $USER
 fi
