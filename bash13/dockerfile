@@ -16,9 +16,10 @@ RUN chown bash200:bash200 /home/bash200/.ssh/authorized_keys && chmod 600 /home/
 RUN chown $chal_user:$chal_user bash200_rsa_key
 RUN [ "/bin/bash", "-c", "chmod 700 /home/*" ]
 COPY ssh_shell.sh /usr/bin/ssh_shell.sh
-RUN mkdir /run/sshd && chmod u+s /usr/sbin/sshd
+COPY sshd.sh /usr/sshd.sh
+RUN mkdir /run/sshd && chmod u+s /usr/sshd.sh
 RUN echo "Match User *\n ForceCommand /usr/bin/ssh_shell.sh\n PermitTTY no\n PubkeyAuthentication yes\n AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 RUN echo "flag{$flag0}" > /home/bash200/flag.txt
 
 # set the command to run at container start (generally a shell)
-CMD /usr/sbin/sshd && bash
+CMD /usr/sshd.sh && bash
