@@ -76,11 +76,3 @@ bash13
 ```bash
 ssh -i bash200_rsa_key bash200@localhost "cat flag.txt" # ssh tty disabled
 ```
-
-zip in jpeg
-```bash
-xxd -r
-base64 -d
-# split file (split,cat)
-gunzip|bzip2 -d|tar -zxO|tar -xO|tar -jxO|gunzip
-```

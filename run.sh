@@ -1,5 +1,5 @@
 #!/bin/bash
-chal_list=$(find . -mindepth 1 -maxdepth 1 -type d | grep -vE '^\./\.' | sort -n -k1.7 ) # get alphabetical folder list
+chal_list=$(find . -mindepth 1 -maxdepth 1 -type d | grep -vE '^\./\.' | grep -E 'bash' | sort -n -k1.7 ) # get alphabetical folder list
 last_pass="bash0"
 
 while read line; do

@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ ! -z "$SSH_ORIGINAL_COMMAND" ]]; then
-	docker run --rm --hostname $USER --user $USER $USER $SSH_ORIGINAL_COMMAND
+	docker run --rm --hostname $USER --user $USER --cpus=".5" $USER $SSH_ORIGINAL_COMMAND
 else
-	docker run --rm --interactive --tty --hostname $USER --user $USER $USER
+	docker run --rm --interactive --tty --hostname $USER --user $USER --cpus=".5" $USER
 fi
