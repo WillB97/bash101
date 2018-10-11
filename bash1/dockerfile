@@ -4,7 +4,11 @@ ARG chal_user=bash
 RUN adduser --gecos "" --disabled-password $chal_user
 WORKDIR /home/$chal_user
 
-RUN  apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl sudo
+# Do not exclude man pages & other documentation
+RUN rm /etc/dpkg/dpkg.cfg.d/excludes
+# Reinstall all currently installed packages in order to get the man pages back
+RUN apt-get update && dpkg -l | grep ^ii | cut -d' ' -f3 | xargs apt-get install -y --reinstall
+RUN apt-get install -y less file nano man xxd ssh netcat openssl sudo
 RUN [ "/bin/bash", "-c", "mkdir inhere && touch inhere/inhere{01..20}" ]
 RUN [ "/bin/bash", "-c", "shred -n 1 -s 1M inhere/inhere{01..20}" ]
 RUN echo "flag{$flag0}" | cat - /dev/urandom | tr -d -c '[:print:]\n{}-'|head -c 1M > inhere/inhere12

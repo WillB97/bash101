@@ -4,7 +4,11 @@ ARG chal_user=bash
 RUN adduser --gecos "" --disabled-password $chal_user
 WORKDIR /home/$chal_user
 
-RUN  apt-get update && apt-get install -y less file nano man xxd ssh netcat openssl sudo
+# Do not exclude man pages & other documentation
+RUN rm /etc/dpkg/dpkg.cfg.d/excludes
+# Reinstall all currently installed packages in order to get the man pages back
+RUN apt-get update && dpkg -l | grep ^ii | cut -d' ' -f3 | xargs apt-get install -y --reinstall
+RUN apt-get install -y less file nano man xxd ssh netcat openssl sudo
 RUN apt-get install -y socat
 COPY *.sh /usr/
 RUN openssl req -x509 -newkey rsa:2048 -keyout /usr/key.pem -out /usr/cert.pem -days 365 -nodes -subj "/C=UK/ST=Hampshire/L=Southampton/O=Southampton University/OU=SUCSS/CN=bash101.sucss.org"
