@@ -5,9 +5,11 @@ Each new connection to a user beginning with bash creates a new container from t
 Containers are automatically destroyed when the user logs out.
 
 Each level is a separate folder or git repo.
-The folder contains a dockerfile, a tag file and a readme.
+The folder contains a dockerfile, a tag file, an info file and a readme.
 
 The tag file contains the username to be used for the challenge.
+
+The info file is echoed to the terminal when a user connects as the challenge user
 
 The dockerfile follows the form:
 ```
@@ -20,7 +22,7 @@ WORKDIR /home/$chal_user
 # place this flag where it is wanted
 RUN echo "flag{$flag0}" > flag.txt
 # insert an embedded flag
-# RUN sed -i flag.txt "s/flag{}/flag{$flag0}/"
+# RUN sed -i "s/flag{}/flag{$flag0}/" flag.txt 
 
 # set the command to run at container start (generally a shell)
 CMD bash
@@ -36,6 +38,7 @@ chal_make <challenge-password> <flag-value> [<flag-value> ..]
 ## Setup
 ```bash
 ./setup.sh
+sudo systemctl reload ssh
 # restart your session to apply groups
 ./run.sh
 ```

@@ -18,6 +18,7 @@ COPY sshd.sh /usr/sshd.sh
 RUN mkdir /run/sshd && chmod u+s /usr/sshd.sh
 RUN echo "Match User *\n ForceCommand /usr/listen.sh\n PubkeyAuthentication yes\n AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config
 COPY listen.sh /usr/listen.sh
+RUN RUN sed -i "s/flag{}/flag{$flag0}/" /usr/listen.sh
 RUN chown bash200:bash200 /usr/listen.sh && chmod 700 /usr/listen.sh
 
 # set the command to run at container start (generally a shell)
