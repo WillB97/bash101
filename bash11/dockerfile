@@ -15,7 +15,7 @@ RUN echo "trade-this-for-a-password" > data.txt
 RUN sed -i "s/flag{}/flag{$flag0}/" /usr/listen.sh
 RUN adduser --gecos "" --disabled-password bash200
 RUN [ "/bin/bash", "-c", "chown bash200:bash200 /usr/{listen.sh,starter.sh}" ]
-RUN chmod u+s /usr/bin/socat && chmod 700 /usr/listen.sh
+RUN chmod 755 /usr/listen.sh
 
 # set the command to run at container start (generally a shell)
 CMD /usr/starter.sh && bash
