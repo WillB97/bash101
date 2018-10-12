@@ -25,7 +25,7 @@ RUN mkdir Documents
 RUN echo flag{$flag4} > Documents/secret.txt
 RUN echo flag{$flag5} > Documents/file\ with\ spaces.txt
 RUN echo flag{$flag6} > Documents/-kebab-
-RUN echo -e "bash1 flag{$flag7}" > .bash_history
-RUN sed -i "s/^.*PS1='\${debian_chroot.*\$/    PS1='\${debian_chroot:+(\$debian_chroot)}\\u@\\h\\\$ '/" .bashrc
+RUN echo "bash1 flag{$flag7}" > .bash_history
+RUN sed -i "s/^.*PS1='\${debian_chroot.*\$/    PS1='\${debian_chroot:+(\$debian_chroot)}\\\u@\\\h\\\\$ '/" .bashrc
 # set the command to run at container start (generally a shell)
 CMD bash
